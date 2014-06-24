@@ -20,7 +20,7 @@ version: v1
         body:
           application/json:
             example: |
-              "songs": [
+                [
                   {
                     "songId": "550e8400-e29b-41d4-a716-446655440000",
                     "songTitle": "Get Lucky"
@@ -33,7 +33,7 @@ version: v1
                     "songId": "550e8400-e29b-41d4-a716-446655440222",
                     "songTitle": "Gio sorgio by Moroder"
                   }
-                  ]
+                ]
   /{songId}:
     description: Song entity
     get:
@@ -48,7 +48,7 @@ version: v1
                   "songTitle": "Get Lucky",
                   "duration": "6:07",
                   "artist": {
-                    "artistId": "110e8300-e32b-41d4-a716-664400445500"
+                    "artistId": "110e8300-e32b-41d4-a716-664400445500",
                     "artistName": "Daft Punk",
                     "imageURL": "http://travelhymns.com/wp-content/uploads/2013/06/random-access-memories1.jpg"
                   },
@@ -79,6 +79,12 @@ version: v1
 
            Use the "binary/octet-stream" content type to specify the content from any consumer (excepting web-browsers).
            Use the "multipart-form/data" content type to upload a file which content will become the file-content
+        queryParameters:
+          access_token:
+            description: "The access token provided by the authentication application"
+            example: AABBCCDD
+            required: true
+            type: string
         body:
           binary/octet-stream:
           multipart/form-data:
@@ -155,37 +161,38 @@ version: v1
         body:
           application/json:
             example: |
-              [{
-                "artistId": "110e8300-e32b-41d4-a716-664400445500",
-                "artistName": "Daft Punk",
-                "description": "French electronic music duo consisting of musicians Guy-Manuel de Homem-Christo and Thomas Bangalter",
-                "imageURL": "http://travelhymns.com/wp-content/uploads/2013/06/random-access-memories1.jpg"
-                "nationality": {
-                  "countryCode": "FRA",
-                  "countryName": "France"
-                }
-              },
-              {
-                "artistId": "110e8300-e32b-41d4-a716-229932554400",
-                "artistName": "Pink Floyd",
-                "description": "English rock band that achieved international acclaim with their progressive and psychedelic music.",
-                "imageURL": "http://www.billboard.com/files/styles/promo_650/public/stylus/1251869-pink-floyd-reunions-617-409.jpg",
-                "nationality": {
-                  "countryCode": "ENG",
-                  "countryName": "England"
-                }
-              },
-              {
-                "artistId": "11032be3-41d4-4455-a716-664400a71600",
-                "artistName": "Radiohead",
-                "description": " English rock band from Abingdon, Oxfordshire, formed in 1985",
-                "imageURL": "http://www.wired.com/images_blogs/photos/uncategorized/2007/10/01/radiohead.jpg",
-                "nationality": {
-                  "countryCode": "ENG",
-                  "countryName": "England"
-                }
-              },
-              ]
+                [
+                  {
+                    "artistId": "110e8300-e32b-41d4-a716-664400445500",
+                    "artistName": "Daft Punk",
+                    "description": "French electronic music duo consisting of musicians Guy-Manuel de Homem-Christo and Thomas Bangalter",
+                    "imageURL": "http://travelhymns.com/wp-content/uploads/2013/06/random-access-memories1.jpg",
+                    "nationality": {
+                      "countryCode": "FRA",
+                      "countryName": "France"
+                    }
+                  },
+                  {
+                    "artistId": "110e8300-e32b-41d4-a716-229932554400",
+                    "artistName": "Pink Floyd",
+                    "description": "English rock band that achieved international acclaim with their progressive and psychedelic music.",
+                    "imageURL": "http://www.billboard.com/files/styles/promo_650/public/stylus/1251869-pink-floyd-reunions-617-409.jpg",
+                    "nationality": {
+                      "countryCode": "ENG",
+                      "countryName": "England"
+                    }
+                  },
+                  {
+                    "artistId": "11032be3-41d4-4455-a716-664400a71600",
+                    "artistName": "Radiohead",
+                    "description": " English rock band from Abingdon, Oxfordshire, formed in 1985",
+                    "imageURL": "http://www.wired.com/images_blogs/photos/uncategorized/2007/10/01/radiohead.jpg",
+                    "nationality": {
+                      "countryCode": "ENG",
+                      "countryName": "England"
+                    }
+                  }
+                ]
 
   /{artistId}:
     description: Artist entity
@@ -204,7 +211,7 @@ version: v1
                   "nationality": {
                     "countryCode": "FRA",
                     "countryName": "France"
-                  }
+                  },
                   "albums": [
                   {
                     "albumId": "183100e3-0e2b-4404-a716-66104d440550",
@@ -301,9 +308,16 @@ version: v1
                       "albumId": "183100e3-0e2b-4404-a716-66104d440557",
                       "albumName": "Discovery",
                       "imageURL": "http://ecx.images-amazon.com/images/I/71bsHTr6idL._SL1500_.jpg"
-                    }]
+                    }
+                  ]
   post:
     description: Add a new Artist to Jukebox
+    queryParameters:
+      access_token:
+        description: "The access token provided by the authentication application"
+        example: AABBCCDD
+        required: true
+        type: string
     body:
       application/json:
         example: |
@@ -360,7 +374,7 @@ version: v1
                 {
                   "albumId": "183100e3-0e2b-4404-a716-66104d440550",
                   "albumName": "Random Access Memories",
-                  "imageURL": "http://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg"
+                  "imageURL": "http://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg",
                   "artistId": "110e8300-e32b-41d4-a716-664400445500",
                   "genre": {
                     "countryCode": "ELE",
@@ -370,7 +384,7 @@ version: v1
                 {
                   "albumId": "183100e3-0e2b-4404-3123-66111d4de520",
                   "albumName": "OK Computer",
-                  "imageURL": "http://www.greenplastic.com/dev/wp-content/uploads/2010/12/ok-computer.jpg"
+                  "imageURL": "http://www.greenplastic.com/dev/wp-content/uploads/2010/12/ok-computer.jpg",
                   "artistId": "11032be3-41d4-4455-a716-664400a71600",
                   "genre": {
                     "countryCode": "ALT",
@@ -380,7 +394,7 @@ version: v1
                 {
                   "albumId": "183100e3-cccc-4404-1111-63204d64coda",
                   "albumName": "The Dark Side of the Moon",
-                  "imageURL": "http://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png"
+                  "imageURL": "http://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
                   "artistId": "110e8300-e32b-41d4-a716-229932554400",
                   "genre": {
                     "countryCode": "PRO",
@@ -407,7 +421,7 @@ version: v1
                   "genre": {
                     "countryCode": "ELE",
                     "countryName": "Electronict"
-                  }
+                  },
                   "songs": [
                   {
                     "songId": "550e8400-e29b-41d4-a716-446655440000",
@@ -423,7 +437,7 @@ version: v1
                   }
                   ],
                   "artist": {
-                    "artistId": "110e8300-e32b-41d4-a716-664400445500"
+                    "artistId": "110e8300-e32b-41d4-a716-664400445500",
                     "artistName": "Daft Punk",
                     "imageURL": "http://travelhymns.com/wp-content/uploads/2013/06/random-access-memories1.jpg"
                   }
@@ -443,21 +457,27 @@ version: v1
               application/json:
                 example: |
                   [
-                  {
-                    "songId": "550e8400-e29b-41d4-a716-446655440000",
-                    "songTitle": "Get Lucky"
-                  },
-                  {
-                    "songId": "550e8400-e29b-41d4-a716-446655440111",
-                    "songTitle": "Loose yourself to dance"
-                  },
-                  {
-                    "songId": "550e8400-e29b-41d4-a716-446655440222",
-                    "songTitle": "Gio sorgio by Moroder"
-                  }
+                    {
+                      "songId": "550e8400-e29b-41d4-a716-446655440000",
+                      "songTitle": "Get Lucky"
+                    },
+                    {
+                      "songId": "550e8400-e29b-41d4-a716-446655440111",
+                      "songTitle": "Loose yourself to dance"
+                    },
+                    {
+                      "songId": "550e8400-e29b-41d4-a716-446655440222",
+                      "songTitle": "Gio sorgio by Moroder"
+                    }
                   ]
   post:
     description: Add a new Album to Jukebox
+    queryParameters:
+      access_token:
+        description: "The access token provided by the authentication application"
+        example: AABBCCDD
+        required: true
+        type: string
     body:
       application/json:
         example: |
