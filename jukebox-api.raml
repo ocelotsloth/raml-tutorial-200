@@ -32,7 +32,7 @@ resourceTypes:
                 example: |
                   <<exampleCollection>>
       post:
-        description: | 
+        description: |
           Add a new <<resourcePathName|!singularize>> to Jukebox.
         queryParameters:
           access_token:
@@ -126,7 +126,7 @@ traits:
         responses:
           200:
             body:
-              binary/octet-stream:
+              application/octet-stream:
                 example:
                   !include heybulldog.mp3
       post:
@@ -139,7 +139,7 @@ traits:
            Use the "binary/octet-stream" content type to specify the content from any consumer (excepting web-browsers).
            Use the "multipart-form/data" content type to upload a file which content will become the file-content
         body:
-          binary/octet-stream:
+          application/octet-stream:
           multipart/form-data:
             formParameters:
               file:
